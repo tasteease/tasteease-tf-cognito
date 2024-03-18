@@ -13,8 +13,8 @@
 
 variable "name" {
   type        = string
-  description = "taste-ease"
-  default = "taste-ease"
+  description = "tasteease-congnito-auth"
+  default     = "tasteease-congnito-auth"
 }
 
 # ------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ variable "advanced_security_mode" {
 variable "alias_attributes" {
   type        = set(string)
   description = "(Optional) Attributes supported as an alias for this user pool. Possible values: 'phone_number', 'email', or 'preferred_username'. Conflicts with username_attributes."
-  default     = [
+  default = [
     "preferred_username"
   ]
 }
@@ -100,7 +100,7 @@ variable "clients" {
 
   default = [
     {
-      name                 = "taste-ease-client"
+      name                 = "tasteease-client"
       read_attributes      = ["email", "preferred_username"]
       allowed_oauth_scopes = ["email", "openid"]
       allowed_oauth_flows  = ["code"]
@@ -115,7 +115,7 @@ variable "clients" {
 variable "domain" {
   description = "(Optional) Type a domain prefix to use for the sign-up and sign-in pages that are hosted by Amazon Cognito, e.g. 'https://{YOUR_PREFIX}.auth.eu-west-1.amazoncognito.com'. The prefix must be unique across the selected AWS Region. Domain names can only contain lower-case letters, numbers, and hyphens."
   type        = string
-  default     = "taste-ease"
+  default     = "tasteease-auth"
 }
 
 variable "certificate_arn" {
@@ -157,7 +157,7 @@ variable "default_client_default_redirect_uri" {
 variable "default_client_explicit_auth_flows" {
   description = "(Optional) List of authentication flows. Possible values are 'ADMIN_NO_SRP_AUTH', 'CUSTOM_AUTH_FLOW_ONLY', 'USER_PASSWORD_AUTH', 'ALLOW_ADMIN_USER_PASSWORD_AUTH', 'ALLOW_CUSTOM_AUTH', 'ALLOW_USER_PASSWORD_AUTH', 'ALLOW_USER_SRP_AUTH', and 'ALLOW_REFRESH_TOKEN_AUTH'."
   type        = list(string)
-  default     = [
+  default = [
     "CUSTOM_AUTH_FLOW_ONLY"
   ]
 }
