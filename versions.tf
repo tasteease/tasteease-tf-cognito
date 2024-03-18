@@ -4,10 +4,10 @@
 
 terraform {
   cloud {
-    organization = "carona"
+    organization = "tasteease"
 
     workspaces {
-      name = "test"
+      name = "tasteease-tf-cognito"
     }
   }
 
