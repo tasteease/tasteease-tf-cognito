@@ -150,10 +150,10 @@ resource "aws_lambda_function" "cognito-define-auth-challenge-lambda" {
   }
 }
 
-resource "aws_lambda_function" "cognito-post-confirmation-lambda" {
-  function_name    = "cognito-post-confirmation-lambda"
-  filename         = "post-confirmation.zip"
-  source_code_hash = filebase64sha256("post-confirmation.zip")
+resource "aws_lambda_function" "cognito-pre-sign-up-lambda" {
+  function_name    = "cognito-pre-sign-up-lambda"
+  filename         = "pre-sign-up.zip"
+  source_code_hash = filebase64sha256("pre-sign-up.zip")
   handler          = "index.handler"
   role             = aws_iam_role.cognito-lambda-role.arn
   runtime          = "nodejs18.x"
@@ -291,7 +291,7 @@ resource "aws_cognito_user_pool" "user_pool" {
 
   lambda_config {
     define_auth_challenge = aws_lambda_function.cognito-define-auth-challenge-lambda.arn
-    post_confirmation = aws_lambda_function.cognito-post-confirmation-lambda.arn
+    pre_sign_up = aws_lambda_function.cognito-pre-sign-up-lambda.arn
   }
 
   # dynamic "lambda_config" {
@@ -436,7 +436,7 @@ resource "aws_lambda_permission" "allow_execution_from_user_pool_1" {
 
 resource "aws_lambda_permission" "allow_execution_from_user_pool_2" {
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.cognito-post-confirmation-lambda.function_name
+  function_name = aws_lambda_function.cognito-pre-sign-up-lambda.function_name
   principal     = "cognito-idp.amazonaws.com"
   source_arn    = aws_cognito_user_pool.user_pool[0].arn  
 }
