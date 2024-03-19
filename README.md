@@ -1,6 +1,6 @@
 # Tasteease - Manage AWS Cognito and Lambda With Terraform
 
-Projeto de IaC para implementação de banco de dados PostgreSQL para AWS RDS.
+Projeto de IaC para implementação do provedor de identidade com funções serverless (lambda) para autenticação e autorização.
 
 ```bash
   terraform init
